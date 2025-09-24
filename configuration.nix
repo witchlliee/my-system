@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.niri.nixosModules.niri
     ];
 
   # Bootloader.
@@ -16,7 +17,7 @@
 
   # Use latest kernel.
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     kernelModules = ["ntsync"];
     kernelParams = [ 
     "quiet"
@@ -130,13 +131,35 @@
      memoryPercent = 100;
   };
 
+  hardware = {
+    bluetooth = {
+      enable = true;
+      input =
+      {
+        General = {
+          ClassicBondedOnly = true;
+          IdleTimeout = 60;
+        };
+      };	
+    };
+  };
+
+  services.blueman.enable = true;
+
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.git.enable = true;
 
   services.udisks2.enable = true;
 
-  programs.niri.enable = true;
+  nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+
+  programs = {
+    niri = {
+      enable = true;
+      package = pkgs.niri;
+    };
+  };
 
   security.soteria.enable = true;
 
@@ -197,6 +220,7 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+  programs.chromium.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -214,7 +238,7 @@
     cliphist
     matugen
     cava
-    xwayland-satellite
+    xwayland-satellite-unstable
     xdg-desktop-portal
     xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
@@ -222,6 +246,8 @@
     kdePackages.dolphin
     discord
     ghostty
+    brave
+    spotify
     
     heroic
     mangohud
@@ -231,6 +257,8 @@
     wget
     arch-install-scripts
     fastfetch
+    kdePackages.ark
+    unrar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

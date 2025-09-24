@@ -2,6 +2,10 @@
 
 {
 
+  imports = [
+    ./niri/default.nix
+  ];
+
     home = {
       username = "ellie";
       homeDirectory = "/home/ellie";
