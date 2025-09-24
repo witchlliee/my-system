@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-     # inputs.niri.nixosModules.niri
+      inputs.niri.nixosModules.niri
       inputs.noctalia.nixosModules.default
     ];
 
@@ -161,7 +161,7 @@
 
   services.blueman.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+ # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.git.enable = true;
 
