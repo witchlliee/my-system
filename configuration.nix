@@ -8,7 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.niri.nixosModules.niri
+     # inputs.niri.nixosModules.niri
+      inputs.noctalia.nixosModules.default
     ];
 
   # Bootloader.
@@ -30,6 +31,8 @@
         "kernel.sched_cfs_bandwidth_slice_us" = 3000;
      };
   };
+
+  services.tuned.enable = true;
 
   networking.hostName = "my-nix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -125,6 +128,16 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = "github:witchlliee/my-system";
+    flags = [
+      "--print-build-logs"
+      "--commit-lock-file"
+    ];
+    dates = "12:00";
+  };
+
   zramSwap = { 
      enable = true;
      priority = 100;
@@ -144,6 +157,8 @@
     };
   };
 
+  xdg.terminal-exec.enable = true;
+
   services.blueman.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -157,11 +172,12 @@
   programs = {
     niri = {
       enable = true;
-      package = pkgs.niri;
+      package = pkgs.niri-stable;
     };
   };
 
   security.soteria.enable = true;
+  systemd.user.services.niri-flake-polkit.enable = false;
 
   xdg = {
     portal = {
@@ -182,6 +198,8 @@
       ];
     };
   };
+
+  services.noctalia-shell.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
 
@@ -229,7 +247,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim 
-    quickshell
     material-symbols
     bibata-cursors
     nwg-look
@@ -248,10 +265,18 @@
     ghostty
     brave
     spotify
+
+    inputs.quickshell.packages.${system}.default
+    inputs.noctalia.packages.${system}.default
     
     heroic
+
     mangohud
     mangojuice
+    btop
+    winetricks
+
+    wineWow64Packages.staging
 
     lsof
     wget
@@ -259,6 +284,9 @@
     fastfetch
     kdePackages.ark
     unrar
+    app2unit
+    cachix
+    kdePackages.kservice
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

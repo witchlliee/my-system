@@ -6,7 +6,7 @@
      ./general.nix
      ./autostart.nix
      ./keybinds.nix
-     ./windowrules.nix
+     ./window-rules.nix
    ];
 
 }

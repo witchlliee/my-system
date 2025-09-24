@@ -21,12 +21,10 @@
      {
        matches = 
        [
-         {
-	   app-id = "^.*\\.exe$";
-	   app-id = "^steam_app_.*$";
-	   app-id = "^steam_app_[0-9]+$";
-	   app-id = "^org.vinegarhq.Sober$";
-         }
+         { app-id = "^.*\\.exe$"; }
+	 { app-id = "^steam_app_.*$"; }
+	 { app-id = "^steam_app_[0-9]+$"; }
+	 { app-id = "^org.vinegarhq.Sober$"; }
        ];
 	   variable-refresh-rate = true;
      }
@@ -37,23 +35,18 @@
          { app-id = "^firefox$"; 
 	   title = ''^Picture-in-Picture$'';
 	 }
-	 {
-	   app-id = "^org.kde.dolphin$";
-	   app-id = "^com.vysp3r.ProtonPlus$";
-	 }
+	 { app-id = "^org.kde.dolphin$"; }
+	 { app-id = "^com.vysp3r.ProtonPlus$"; }
        ];
            open-floating = true;
      }
-
      {
        matches =
        [
-         {
-	   app-id = "^discord$";
-	   app-id = "^steam$";
-	   app-id = "^heroic$";
-	   app-id = "^firefox$";
-	 }
+         { app-id = "^discord$"; }
+	 { app-id = "^steam$"; }
+	 { app-id = "^heroic$"; }
+	 { app-id = "^firefox$"; }
        ];
            open-maximized = true;
      }
@@ -70,8 +63,9 @@
              relative-to = "bottom";
                x = 10;
                y = 10;
-           };
+           };	
      }
+   ];
 
 }
 	 

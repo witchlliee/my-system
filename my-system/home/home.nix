@@ -3,7 +3,7 @@
 {
 
   imports = [
-    ./niri/default.nix
+   # ./niri/default.nix
   ];
 
     home = {

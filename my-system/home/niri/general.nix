@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, pkgs, ... }:
 
 {
 
@@ -9,14 +9,20 @@
 	    width = 1920;
 	    height = 1080;
 	    refresh = 239.964;
+	  };
 	  variable-refresh-rate = "on-demand";
 	  scale = 1.0;
 	  position = { x = 0; y = 0; };
 	  };
-       };
      };
 
      prefer-no-csd = true;
+
+     hotkey-overlay = {
+       skip-at-startup = true;
+     };
+
+     xwayland-satellite.path = "${lib.getExe pkgs.xwayland-satellite-unstable}";
 
      input = {
        keyboard.xkb.layout = "br";
@@ -33,8 +39,12 @@
        border = {
          enable = true;
 	 width = 4;
-	 active = "#cba6f7";
-	 inactive = "#505050";
+	 active = {
+	   color = "#cba6f7";
+	 };  
+	 inactive = {
+	   color = "#505050";
+	 };  
        };
        gaps = 16;
 
@@ -47,6 +57,7 @@
      };
 
      environment = {
+       NIXOS_OZONE_WL = "1";
        QT_QPA_PLATFORM = "wayland";
        SDL_VIDEODRIVER = "wayland,x11,windows";
        GDK_BACKEND = "wayland";
