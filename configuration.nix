@@ -66,7 +66,15 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = false;
 
-  services.displayManager.gdm.enable = true;
+  services.greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+          user = "greeter";
+        };
+      };
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -126,7 +134,22 @@
 
   security.sudo-rs.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+    };
+    optimise = {
+        automatic = true;
+        dates = ["weekly"];
+    };
+    gc = {
+      automatic = true;
+      dates = ["weekly"];
+      options = "--delete-older-than 7d";
+      persistent = true;
+    };
+  };
 
   system.autoUpgrade = {
     enable = true;
@@ -142,6 +165,14 @@
      enable = true;
      priority = 100;
      memoryPercent = 100;
+  };
+
+  services = { 
+    ananicy = {
+      enable = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos;
+    };
   };
 
   hardware = {
@@ -161,7 +192,16 @@
 
   services.blueman.enable = true;
 
- # environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland,x11,windows";
+    GDK_BACKEND = "wayland";
+    PROTON_USE_WAYLAND = "1";
+    PROTON_USE_WOW64 = "1";
+  };
 
   programs.git.enable = true;
 
@@ -172,11 +212,14 @@
   programs = {
     niri = {
       enable = true;
-      package = pkgs.niri-stable;
+      package = pkgs.niri-unstable;
     };
   };
-
-  security.soteria.enable = true;
+  
+  security = {
+    polkit.enable = true;
+    soteria.enable = true;
+  };
   systemd.user.services.niri-flake-polkit.enable = false;
 
   xdg = {
@@ -201,16 +244,11 @@
 
   services.noctalia-shell.enable = true;
 
-  services.gnome.gnome-keyring.enable = true;
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true; 
     localNetworkGameTransfers.openFirewall = true; 
-    extraCompatPackages = [
-      pkgs.proton-ge-bin
-    ];
   };
 
   services.udev.extraRules = ''
@@ -234,11 +272,12 @@
     };
   };
 
+  services.flatpak.enable = true;
+
   programs.fish.enable = true;  
 
   # Install firefox.
   programs.firefox.enable = true;
-  programs.chromium.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -265,6 +304,8 @@
     ghostty
     brave
     spotify
+    linux-wallpaperengine
+    bazaar_git
 
     inputs.quickshell.packages.${system}.default
     inputs.noctalia.packages.${system}.default
@@ -277,6 +318,7 @@
     winetricks
 
     wineWow64Packages.staging
+    protonplus
 
     lsof
     wget

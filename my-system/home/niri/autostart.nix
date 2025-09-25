@@ -3,7 +3,8 @@
 {
 
    programs.niri.settings.spawn-at-startup = [
-     { argv = ["steam" "-silent"]; }
+     { sh = "wl-paste --watch cliphist store"; }
+     { sh = "steam -silent"; }
      { argv = ["heroic"]; }
      { argv = ["discord"]; }
    ];

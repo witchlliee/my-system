@@ -15,6 +15,7 @@ in
      "Mod+D".action.spawn = noctalia "controlCenter toggle";
      "Mod+Shift+C".action.spawn = noctalia "launcher clipboard";
      "Mod+Shift+E".action.spawn = noctalia "sessionMenu toggle";
+     "Mod+Shift+R".action = spawn "sh" "-c" ''systemctl --user restart noctalia-shell'';
 
      "Mod+P".action = screenshot;
      "Mod+Shift+P".action = screenshot-window;

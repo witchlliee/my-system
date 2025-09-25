@@ -56,14 +56,6 @@
        };
      };
 
-     environment = {
-       NIXOS_OZONE_WL = "1";
-       QT_QPA_PLATFORM = "wayland";
-       SDL_VIDEODRIVER = "wayland,x11,windows";
-       GDK_BACKEND = "wayland";
-       PROTON_USE_WAYLAND = "1";
-       PROTON_USE_WOW64 = "1";
-     };
    };
 
 }
