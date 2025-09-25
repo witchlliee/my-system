@@ -25,6 +25,7 @@
 	 { app-id = "^steam_app_.*$"; }
 	 { app-id = "^steam_app_[0-9]+$"; }
 	 { app-id = "^org.vinegarhq.Sober$"; }
+	 { app-id = "bg3"; }
        ];
 	   variable-refresh-rate = true;
      }
