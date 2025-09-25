@@ -316,6 +316,7 @@
     mangojuice
     btop
     winetricks
+    vulkan-tools
 
     wineWow64Packages.staging
     protonplus
