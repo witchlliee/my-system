@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./my-system/default.nix
       inputs.niri.nixosModules.niri
       inputs.noctalia.nixosModules.default
     ];
@@ -161,6 +162,8 @@
     dates = "12:00";
   };
 
+  programs.nix-ld.enable = true;
+
   zramSwap = { 
      enable = true;
      priority = 100;
@@ -194,13 +197,6 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-
-    QT_QPA_PLATFORM = "wayland";
-    SDL_VIDEODRIVER = "wayland,x11,windows";
-    GDK_BACKEND = "wayland";
-    PROTON_USE_WAYLAND = "1";
-    PROTON_USE_WOW64 = "1";
   };
 
   programs.git.enable = true;
@@ -243,22 +239,6 @@
   };
 
   services.noctalia-shell.enable = true;
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true; 
-    localNetworkGameTransfers.openFirewall = true; 
-  };
-
-  services.udev.extraRules = ''
-      # USB
-      ATTRS{name}=="Sony Interactive Entertainment Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-      ATTRS{name}=="Sony Interactive Entertainment DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-      # Bluetooth
-      ATTRS{name}=="Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-      ATTRS{name}=="DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
-    '';
 
   stylix = {
     enable = true;
@@ -310,16 +290,7 @@
     inputs.quickshell.packages.${system}.default
     inputs.noctalia.packages.${system}.default
     
-    heroic
-
-    mangohud
-    mangojuice
     btop
-    winetricks
-    vulkan-tools
-
-    wineWow64Packages.staging
-    protonplus
 
     lsof
     wget
