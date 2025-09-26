@@ -12,11 +12,11 @@
 
   services.udev.extraRules = ''
       # USB
-      ATTRS{name}=="Sony Interactive Entertainment Wireless Controller Touchpa>
-      ATTRS{name}=="Sony Interactive Entertainment DualSense Wireless Controll>
+    ATTRS{name}=="Sony Interactive Entertainment Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+    ATTRS{name}=="Sony Interactive Entertainment DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
       # Bluetooth
-      ATTRS{name}=="Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}>
-      ATTRS{name}=="DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNO>
+    ATTRS{name}=="Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+    ATTRS{name}=="DualSense Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
   '';
 
   environment = {
