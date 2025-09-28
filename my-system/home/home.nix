@@ -39,7 +39,8 @@
   };
 
   home.packages = with pkgs; [
-
+    hyprshot
+    swappy
   ];
 
     home.stateVersion = "25.05";

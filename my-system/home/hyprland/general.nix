@@ -26,7 +26,7 @@
               border_size = 4;
 	      gaps_in = 6;
 	      gaps_out = 16;
-	      "col.active_border" = lib.mkForce "rgb(203, 166, 247)";
+	      "col.active_border" = lib.mkForce "rgb(203,166,247)";
 	      layout = "scrolling";
 	      allow_tearing = true;
             };
@@ -42,16 +42,15 @@
 
             decoration = {
               rounding = 5;
-	      rouding_power = 4.0;
+	      rounding_power = 4.0;
 	      active_opacity = 0.95;
 	      inactive_opacity = 0.95;
 	      fullscreen_opacity = 1.0;
-            };
-
-            blur = {
-              size = 3;
-	      passes = 3;
-            };
+              blur = {
+                size = 3;
+	        passes = 3;
+              };
+	    };
 
             animations = {
               bezier = [

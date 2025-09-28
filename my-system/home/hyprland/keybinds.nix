@@ -6,6 +6,13 @@
         "$mod" = "SUPER";
       bind =
        [
+        "$mod, Super_L, exec, noctalia-shell ipc call launcher toggle"
+	"$mod, W, exec, noctalia-shell ipc call wallpaper toggle"
+	"$mod, D, exec, noctalia-shell ipc call controlCenter toggle"
+	"$mod, S, exec, noctalia-shell ipc call settings toggle"
+	"$mod, C, exec, noctalia-shell ipc call launcher clipboard"
+	"$mod SHIFT, E, exec, noctalia-shell ipc call sessionMenu toggle"
+
         "$mod, T, exec, app2unit -- ghostty"
 	"$mod, E, exec, app2unit -- dolphin"
 	
@@ -17,9 +24,9 @@
 	"$mod, I, movefocus, u"
 	"$mod, K, movefocus, d"
 
-	"$mod, P, screenshot region"
-	"$mod SHIFT, P, screenshot monitor"
-	"$mod CTRL, P, screenshot region swappy"
+	"$mod, P, exec, hyprshot -m region"
+	"$mod SHIFT, P, exec, hyprshot -m output"
+	"$mod CTRL, P, exec, hyprshot -m region swappy"
        ]
          ++ (
            # workspaces
