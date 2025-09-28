@@ -7,7 +7,7 @@
        draw-border-with-background = false;
        geometry-corner-radius =
           let
-            a = 8.0;
+            a = 5.0;
           in
         {
           top-left = a;

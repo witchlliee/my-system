@@ -26,6 +26,7 @@
     systemPackages = with pkgs; [
         # launchers & emulators & games
       heroic 
+      lutris
       pokemmo-installer
       dolphin-emu
       pcsx2
@@ -41,6 +42,8 @@
       vulkan-tools
       mangohud
       mangojuice
+      evtest
+      evtest-qt
     ];
   };
 

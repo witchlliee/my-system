@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
+    hyprland.url = "github:hyprwm/Hyprland";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,7 +30,7 @@
 
   };
 
-  outputs = { self, nixpkgs, chaotic, home-manager, stylix, niri, ... }@inputs: {
+  outputs = { self, nixpkgs, chaotic, home-manager, niri, stylix, ... }@inputs: {
     nixosConfigurations = {
       my-nix = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

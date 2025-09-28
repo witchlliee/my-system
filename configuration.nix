@@ -71,7 +71,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+          command = "${pkgs.tuigreet}/bin/tuigreet --remember --time --cmd niri-session";
           user = "greeter";
         };
       };
@@ -138,6 +138,9 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
       auto-optimise-store = true;
     };
     optimise = {
@@ -178,6 +181,8 @@
     };
   };
 
+  services.lact.enable = true;
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -197,6 +202,11 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland,x11,windows";
+    GDK_BACKEND = "wayland";
+    PROTON_USE_WAYLAND = "1"; 
   };
 
   programs.git.enable = true;
@@ -210,6 +220,12 @@
       enable = true;
       package = pkgs.niri-unstable;
     };
+  };
+
+    programs.hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
   
   security = {
@@ -243,7 +259,7 @@
   stylix = {
     enable = true;
     # image = ./wallpapers/wallhaven-qr2zj5_3840x2160.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/synth-midnight-dark.yaml";
     polarity = "dark";
     cursor = {
       package = pkgs.bibata-cursors;
@@ -285,7 +301,6 @@
     brave
     spotify
     linux-wallpaperengine
-    bazaar_git
 
     inputs.quickshell.packages.${system}.default
     inputs.noctalia.packages.${system}.default
@@ -301,6 +316,7 @@
     app2unit
     cachix
     kdePackages.kservice
+    compsize
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

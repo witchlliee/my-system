@@ -4,6 +4,7 @@
 
   imports = [
     ./niri/default.nix
+    ./hyprland/default.nix
   ];
 
     home = {
