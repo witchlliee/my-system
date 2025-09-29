@@ -14,7 +14,10 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.limine = {
+    enable = true;
+    style.wallpapers = ["/home/ellie/Pictures/wallpapers/nixos-wallpaper-catppuccin-mocha.svg"];
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
@@ -138,9 +141,6 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
       auto-optimise-store = true;
     };
     optimise = {
@@ -180,6 +180,8 @@
       rulesProvider = pkgs.ananicy-rules-cachyos;
     };
   };
+
+  chaotic.mesa-git.enable = true;
 
   services.lact.enable = true;
 
@@ -222,13 +224,6 @@
     };
   };
 
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-  
   security = {
     polkit.enable = true;
     soteria.enable = true;

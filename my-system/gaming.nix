@@ -28,6 +28,7 @@
       heroic 
       lutris
       pokemmo-installer
+      prismlauncher
       dolphin-emu
       pcsx2
       rpcs3

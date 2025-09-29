@@ -4,7 +4,6 @@
 
   imports = [
     ./niri/default.nix
-    ./hyprland/default.nix
   ];
 
     home = {
@@ -39,7 +38,6 @@
   };
 
   home.packages = with pkgs; [
-    hyprshot
     swappy
   ];
 
