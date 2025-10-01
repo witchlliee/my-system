@@ -45,6 +45,9 @@
       mangojuice
       evtest
       evtest-qt
+
+        # libs
+      glfw
     ];
   };
 

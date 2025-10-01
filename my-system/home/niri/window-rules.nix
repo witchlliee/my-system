@@ -28,6 +28,7 @@
 	  { app-id = "^steam_app_[0-9]+$"; }
 	  { app-id = "^org.vinegarhq.Sober$"; }
 	  { app-id = "bg3"; }
+	  { app-id = ".*minecraft.*"; }
         ];
 	  variable-refresh-rate = true;
        }
@@ -39,9 +40,12 @@
 	    app-id = "^firefox$"; 
 	    title = ''^Picture-in-Picture$'';
 	  }
+	  { app-id = "^steam$"; }
 	  { app-id = "^org.kde.dolphin$"; }
 	  { app-id = "^com.vysp3r.ProtonPlus$"; }
         ];
+	  excludes = [ { title = "^[Ss]team$"; } ];
+
           open-floating = true;
        }
        {

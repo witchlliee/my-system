@@ -296,7 +296,7 @@
     ghostty
     brave
     spotify
-    linux-wallpaperengine
+    mpvpaper
 
     inputs.quickshell.packages.${system}.default
     inputs.noctalia.packages.${system}.default
@@ -313,6 +313,9 @@
     cachix
     kdePackages.kservice
     compsize
+    cmake
+    ninja
+    gcc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
