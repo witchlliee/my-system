@@ -53,7 +53,7 @@
             };
 
 	    render = {
-	      direct_scanout = 2;
+	      direct_scanout = 1;
 	    };
 
             decoration = {
