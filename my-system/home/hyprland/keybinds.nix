@@ -17,9 +17,9 @@
 	"$mod, I, movefocus, u"
 	"$mod, K, movefocus, d"
 
-	"$mod, P, screenshot region"
-	"$mod SHIFT, P, screenshot monitor"
-	"$mod CTRL, P, screenshot region swappy"
+	"$mod, P, exec, hyprshot -m region"
+	"$mod SHIFT, P, exec, hyprshot -m output"
+	"$mod CTRL, P, exec, hyprshot -m region swappy"
        ]
          ++ (
            # workspaces
