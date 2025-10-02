@@ -234,8 +234,13 @@
   xdg = {
     portal = {
       enable = true;
-      xdgOpenUsePortal = true;
+      xdgOpenUsePortal = false;
       config = {
+        common = {
+	  default = [
+	    "gtk"
+	  ];
+        };
         niri = {
           default = [ "gnome" "gtk"];
 	   "org.freedesktop.impl.portal.Access" = ["gtk"];
@@ -243,14 +248,10 @@
            "org.freedesktop.impl.portal.FileChooser" = ["gtk"]; 
 	   "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
         };
-
-	hyprland = {
-	  default = [ "hyprland" ];
-        };
       };
       extraPortals = [
+       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
        pkgs.xdg-desktop-portal-gtk
-       pkgs.xdg-desktop-portal-gnome
       ];
     };
   };
@@ -293,7 +294,6 @@
     cava
     xwayland-satellite-unstable
     xdg-desktop-portal
-    xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk
     gnome-secrets
     kdePackages.dolphin

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
 
@@ -16,10 +16,17 @@
             "--all"
             ];
 	  };
+	  plugins = [
+            inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprscrolling
+          ];
 	  settings = {
-            monitor = [
-              "DP-1, 1920x1080@239.96, auto, 1, vrr, 2"
-            ];
+            monitorv2 = {
+	      output = "DP-1";
+	      mode = "1920x1080@239.96";
+	      scale = 1;
+	      position = "0x0";
+	      vrr = 2;
+	    };
 
             input = {
               kb_layout = "br";
@@ -33,6 +40,12 @@
 	      layout = "scrolling";
 	      allow_tearing = true;
             };
+
+	    plugin = {
+	      hyprscrolling = {
+	        fullscreen_on_one_column = true;
+	      };
+	    };
 
             misc = {
               vrr = 2;

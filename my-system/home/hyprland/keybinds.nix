@@ -20,7 +20,8 @@
 	
 	"$mod, Q, killactive,"
 	"$mod, V, togglefloating"
-	"$mod, F, fullscreen"
+	"$mod, F, fullscreen, 1"
+	"$mod SHIFT, F, fullscreen, 0"
 	"$mod, J, movefocus, l"
 	"$mod, L, movefocus, r"
 	"$mod, I, movefocus, u"
