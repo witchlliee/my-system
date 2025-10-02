@@ -6,6 +6,15 @@
         "$mod" = "SUPER";
       bind =
        [
+        "$mod, Super_L, exec, noctalia-shell ipc call launcher toggle"
+	"$mod, W, exec, noctalia-shell ipc call wallpaper toggle"
+	"$mod, D, exec, noctalia-shell ipc call controlCenter toggle"
+	"$mod, S, exec, noctalia-shell ipc call settings toggle"
+	"$mod, C, exec, noctalia-shell ipc call launcher calculator"
+	"$mod SHIFT, C, exec, noctalia-shell ipc call launcher clipboard"
+	"$mod SHIFT, E, exec, noctalia-shell ipc call sessionMenu toggle"
+	"$mod SHIFT, R, exec, systemctl --user restart noctalia-shell"
+
         "$mod, T, exec, app2unit -- ghostty"
 	"$mod, E, exec, app2unit -- dolphin"
 	

@@ -2,6 +2,9 @@
 
 {
 
+  xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh"; 
+
+
     wayland = {
       windowManager = {
         hyprland = {
@@ -47,8 +50,8 @@
 	      inactive_opacity = 0.95;
 	      fullscreen_opacity = 1.0;
               blur = {
-                size = 3;
-	        passes = 3;
+                size = 2;
+	        passes = 2;
               };
 	    };
 

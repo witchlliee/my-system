@@ -205,15 +205,6 @@
 
   services.blueman.enable = true;
 
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-
-    QT_QPA_PLATFORM = "wayland";
-    SDL_VIDEODRIVER = "wayland,x11,windows";
-    GDK_BACKEND = "wayland";
-    PROTON_USE_WAYLAND = "1"; 
-  };
-
   programs.git.enable = true;
 
   services.udisks2.enable = true;
@@ -229,6 +220,7 @@
 
   programs.hyprland = {
     enable = true;
+    withUWSM = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
