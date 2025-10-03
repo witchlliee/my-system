@@ -4,6 +4,7 @@
 
   imports = [
     ./gaming.nix
+    ./systemd-services.nix
   ];
 
 }

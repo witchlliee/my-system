@@ -30,7 +30,7 @@
     ];
     kernel.sysctl = {
         "kernel.split_lock_mitigate" = 0;
-        "vm.max_map_count" = 2147483642;
+	"vm.max_map_count" = 2147483642;
         "net.ipv4.tcp_fin_timeout" = 5;
         "kernel.sched_cfs_bandwidth_slice_us" = 3000;
      };
@@ -183,8 +183,6 @@
       rulesProvider = pkgs.ananicy-rules-cachyos;
     };
   };
-
-  chaotic.mesa-git.enable = true;
 
   services.lact.enable = true;
 
