@@ -29,6 +29,7 @@
 	  { app-id = "^org.vinegarhq.Sober$"; }
 	  { app-id = "bg3"; }
 	  { app-id = ".*minecraft.*"; }
+	  { title = "^.*minecraft.*$"; }
         ];
 	  variable-refresh-rate = true;
        }
@@ -42,6 +43,7 @@
 	  }
 	  { app-id = "^steam$"; }
 	  { app-id = "^org.kde.dolphin$"; }
+	  { app-id = "^com.system76.CosmicFiles$"; }
 	  { app-id = "^com.vysp3r.ProtonPlus$"; }
         ];
 	  excludes = [ { title = "^[Ss]team$"; } ];

@@ -53,6 +53,8 @@
     packages = with pkgs; [
       hyprshot
       swappy
+      cosmic-files
+      cosmic-store
     ];
   };
 

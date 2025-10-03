@@ -10,7 +10,7 @@ in
    programs.niri.settings.binds = with config.lib.niri.actions; { 
      "Mod+A".action.spawn = noctalia "launcher toggle";
      "Mod+T".action = spawn "sh" "-c" ''ghostty'';
-     "Mod+E".action = spawn "sh" "-c" ''dolphin'';
+     "Mod+E".action = spawn "sh" "-c" ''cosmic-files'';
      "Mod+W".action.spawn = noctalia "wallpaper toggle";
      "Mod+D".action.spawn = noctalia "controlCenter toggle";
      "Mod+Shift+C".action.spawn = noctalia "launcher clipboard";
