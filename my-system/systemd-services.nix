@@ -7,7 +7,7 @@
     wantedBy = [ "default.target" ];
     description = "Flatpak Update";
     serviceConfig = {
-      Type = "one-shot";
+      Type = "simple";
       ExecStart = ''/usr/bin/flatpak update --assumeyes --noninteractive'';
     };
   };
