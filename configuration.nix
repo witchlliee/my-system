@@ -22,7 +22,7 @@
 
   # Use latest kernel.
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     kernelModules = ["ntsync"];
     kernelParams = [ 
     "quiet"
@@ -30,10 +30,13 @@
     ];
     kernel.sysctl = {
         "kernel.split_lock_mitigate" = 0;
-	"vm.max_map_count" = 2147483642;
-        "net.ipv4.tcp_fin_timeout" = 5;
-        "kernel.sched_cfs_bandwidth_slice_us" = 3000;
      };
+  };
+
+  services.scx = {
+    enable = true;
+    scheduler = "scx_bpfland";
+    extraArgs = ["-m all"];
   };
 
   services.tuned.enable = true;
