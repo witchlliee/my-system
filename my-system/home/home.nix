@@ -3,6 +3,7 @@
 {
 
   imports = [
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     ./niri/default.nix
     ./hyprland/default.nix
   ];
@@ -51,6 +52,7 @@
     };
 
     packages = with pkgs; [
+      linux-wallpaperengine
       hyprshot
       swappy
       cosmic-files

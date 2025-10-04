@@ -7,14 +7,18 @@ let
 in
 {
 
-   programs.niri.settings.binds = with config.lib.niri.actions; { 
-     "Mod+A".action.spawn = noctalia "launcher toggle";
+   programs.niri.settings.binds = with config.lib.niri.actions; 
+     let
+         dms-ipc = spawn "dms" "ipc";
+     in
+   { 
+     "Mod+A".action = dms-ipc "spotlight" "toggle";
      "Mod+T".action = spawn "sh" "-c" ''ghostty'';
-     "Mod+E".action = spawn "sh" "-c" ''cosmic-files'';
-     "Mod+W".action.spawn = noctalia "wallpaper toggle";
-     "Mod+D".action.spawn = noctalia "controlCenter toggle";
-     "Mod+Shift+C".action.spawn = noctalia "launcher clipboard";
-     "Mod+Shift+E".action.spawn = noctalia "sessionMenu toggle";
+     "Mod+E".action = spawn "sh" "-c" ''dolphin'';
+     "Mod+S".action = dms-ipc "settings" "toggle";
+     "Mod+D".action = dms-ipc "control-center" "toggle";
+     "Mod+Shift+C".action = dms-ipc "clipboard" "toggle";
+     "Mod+Shift+E".action = dms-ipc "powermenu" "toggle";
      "Mod+Shift+R".action = spawn "sh" "-c" ''systemctl --user restart noctalia-shell'';
 
      "Mod+P".action = screenshot;
