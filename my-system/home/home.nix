@@ -47,9 +47,6 @@
       SDL_VIDEODRIVER = "wayland,x11,windows";
       GDK_BACKEND = "wayland";
       PROTON_USE_WAYLAND = "1";
-
-        # hyprland uwsm specific
-      APP2UNIT_TYPE = "service";
     };
 
     packages = with pkgs; [
