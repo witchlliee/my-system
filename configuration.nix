@@ -36,7 +36,7 @@
   services.scx = {
     enable = true;
     scheduler = "scx_bpfland";
-    extraArgs = ["-m all"];
+    extraArgs = ["-m performance"];
   };
 
   services.tuned.enable = true;
@@ -242,7 +242,7 @@
     };
   };
 
-  # services.noctalia-shell.enable = true;
+  services.noctalia-shell.enable = true;
 
   stylix = {
     enable = true;

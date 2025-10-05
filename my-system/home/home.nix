@@ -3,7 +3,6 @@
 {
 
   imports = [
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     ./niri/default.nix
   ];
 
@@ -37,8 +36,6 @@
       set fish_greeting # Disable greeting
   '';
   };
-
-  programs.dankMaterialShell.enable = true;
 
   home = {
     sessionVariables = {
