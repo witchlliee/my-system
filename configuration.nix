@@ -145,9 +145,6 @@
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
     optimise = {
         automatic = true;
@@ -219,13 +216,6 @@
     };
   };
 
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-
   security = {
     polkit.enable = true;
     soteria.enable = true;
@@ -235,15 +225,10 @@
   xdg = {
     portal = {
       enable = true;
-      xdgOpenUsePortal = false;
+      xdgOpenUsePortal = true;
       config = {
-        common = {
-	  default = [
-	    "gtk"
-	  ];
-        };
         niri = {
-          default = [ "gnome" "gtk"];
+          default = ["gnome" "gtk"];
 	   "org.freedesktop.impl.portal.Access" = ["gtk"];
            "org.freedesktop.impl.portal.Notification" = ["gtk"];
            "org.freedesktop.impl.portal.FileChooser" = ["gtk"]; 
@@ -251,7 +236,7 @@
         };
       };
       extraPortals = [
-       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+       pkgs.xdg-desktop-portal-gnome
        pkgs.xdg-desktop-portal-gtk
       ];
     };

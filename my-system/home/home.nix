@@ -5,7 +5,7 @@
   imports = [
     inputs.dankMaterialShell.homeModules.dankMaterialShell.default
     ./niri/default.nix
-    ./hyprland/default.nix
+   # ./hyprland/default.nix
   ];
 
     home = {
