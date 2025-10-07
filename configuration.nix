@@ -161,6 +161,7 @@
   system.autoUpgrade = {
     enable = true;
     flake = "github:witchlliee/my-system";
+    allowReboot = true;
     flags = [
       "--print-build-logs"
       "--commit-lock-file"

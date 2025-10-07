@@ -70,7 +70,7 @@
 	  }
         ];
            default-floating-position = {
-             relative-to = "bottom";
+             relative-to = "bottom-right";
                x = 10;
                y = 10;
            };	
