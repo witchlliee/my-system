@@ -26,13 +26,12 @@
     systemPackages = with pkgs; [
         # launchers & emulators & games
       heroic 
-      lutris
       pokemmo-installer
       prismlauncher
-      dolphin-emu
+     # dolphin-emu
       pcsx2
       rpcs3
-      shadps4
+     # shadps4
       
         # wine/proton
       wineWow64Packages.staging
