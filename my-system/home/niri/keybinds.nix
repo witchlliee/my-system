@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 
-let
-  noctalia = cmd: [
+ let
+   noctalia = cmd: [
     "noctalia-shell" "ipc" "call"
-  ] ++ (pkgs.lib.splitString " " cmd);
-in
+   ] ++ (pkgs.lib.splitString " " cmd);
+ in
 {
 
    programs.niri.settings.binds = with config.lib.niri.actions; 
@@ -15,6 +15,7 @@ in
      "Mod+W".action.spawn = noctalia "wallpaper toggle";
      "Mod+S".action.spawn = noctalia "settings toggle";
      "Mod+D".action.spawn = noctalia "controlCenter toggle";
+     "Mod+N".action.spawn = noctalia "notifications toggleHistory";
      "Mod+Shift+C".action.spawn = noctalia "launcher clipboard";
      "Mod+Shift+E".action.spawn = noctalia "sessionMenu toggle";
      "Mod+Shift+R".action = spawn "sh" "-c" ''systemctl --user restart noctalia-shell'';

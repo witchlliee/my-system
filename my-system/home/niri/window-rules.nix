@@ -71,9 +71,12 @@
         ];
            default-floating-position = {
              relative-to = "bottom-right";
-               x = 10;
-               y = 10;
-           };	
+               x = 0;
+               y = 0;
+           };
+	   open-focused = false;
+	   geometry-corner-radius = null;
+	   border.enable = false;
         }
      ];
          layer-rules = [

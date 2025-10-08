@@ -34,10 +34,11 @@
     };
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
+      fish_add_path -m ~/.nix-profile/bin
   '';
   };
 
-  home = {
+    home = {
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       QT_QPA_PLATFORM = "wayland";
