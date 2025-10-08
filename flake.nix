@@ -30,7 +30,7 @@
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+   
   };
 
   outputs = { self, nixpkgs, chaotic, home-manager, niri, stylix, ... }@inputs: {

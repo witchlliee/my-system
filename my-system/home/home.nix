@@ -4,6 +4,8 @@
 
   imports = [
     ./niri/default.nix
+    ./sway/default.nix
+    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
   ];
 
     home = {
@@ -34,27 +36,21 @@
     };
     interactiveShellInit = ''
       set fish_greeting # Disable greeting
-      fish_add_path -m ~/.nix-profile/bin
   '';
   };
 
-    home = {
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      QT_QPA_PLATFORM = "wayland";
-      SDL_VIDEODRIVER = "wayland,x11,windows";
-      GDK_BACKEND = "wayland";
-      PROTON_USE_WAYLAND = "1";
-    };
+  programs.dankMaterialShell.enable = false;
 
-    packages = with pkgs; [
+    home.packages = with pkgs; [
+         # dms
       linux-wallpaperengine
-      hyprshot
+      inter-nerdfont
+      fira-code 
+
       swappy
       cosmic-files
       cosmic-store
     ];
-  };
 
     home.stateVersion = "25.05";
 

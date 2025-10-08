@@ -92,9 +92,6 @@
   # Configure console keymap
   console.keyMap = "br-abnt2";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -200,8 +197,6 @@
     };
   };
 
-  xdg.terminal-exec.enable = true;
-
   services.blueman.enable = true;
 
   programs.git.enable = true;
@@ -217,6 +212,12 @@
     };
   };
 
+  programs.sway = {
+    enable = true;
+    package = pkgs.swayfx;
+    wrapperFeatures.gtk = true;
+  };
+
   security = {
     polkit.enable = true;
     soteria.enable = true;
@@ -226,15 +227,15 @@
   xdg = {
     portal = {
       enable = true;
-      xdgOpenUsePortal = true;
       config = {
+        common.default = [ "gtk" ];
         niri = {
           default = ["gnome" "gtk"];
-	   "org.freedesktop.impl.portal.Access" = ["gtk"];
+ 	   "org.freedesktop.impl.portal.Access" = ["gtk"];
            "org.freedesktop.impl.portal.Notification" = ["gtk"];
            "org.freedesktop.impl.portal.FileChooser" = ["gtk"]; 
-	   "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
-        };
+ 	   "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
+       };
       };
       extraPortals = [
        pkgs.xdg-desktop-portal-gnome
@@ -267,6 +268,14 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland,x11,windows";
+    GDK_BACKEND = "wayland";
+    PROTON_USE_WAYLAND = "1";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -280,8 +289,6 @@
     matugen
     cava
     xwayland-satellite-unstable
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
     gnome-secrets
     kdePackages.dolphin
     discord
@@ -291,7 +298,7 @@
     mpvpaper
 
     inputs.quickshell.packages.${system}.default
-    inputs.noctalia.packages.${system}.default
+   # inputs.noctalia.packages.${system}.default
     
     btop
 
