@@ -41,13 +41,11 @@
 
   programs.dankMaterialShell.enable = false;
 
-    home.packages = with pkgs; [
-         # dms
+    home.packages = with pkgs; [ 
       linux-wallpaperengine
-      inter-nerdfont
-      fira-code 
-
+      hyprshot
       swappy
+
       cosmic-files
       cosmic-store
     ];

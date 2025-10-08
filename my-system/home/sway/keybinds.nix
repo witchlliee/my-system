@@ -4,46 +4,41 @@
  
   wayland.windowManager.sway.config = {
       modifier = "Mod4";
-      keybindings = lib.attrsets.mergeAttrsList [
-        (lib.attrsets.mergeAttrsList (map (num: let
-          ws = toString num;
-        in {
-          "Mod4+${ws}" = "workspace ${ws}";
-          "Mod4+Shift+${ws}" = "move container to workspace ${ws}";
-        }) [1 2 3 4 5 6 7 8 9 0]))
+      keybindings = 
+      let
+         modifier = config.wayland.windowManager.sway.config.modifier;
+      in lib.mkOptionDefault 
+       {
+          "${modifier}+1" = "workspace 1";
+	  "${modifier}+2" = "workspace 2";
+	  "${modifier}+3" = "workspace 3";
+	  "${modifier}+4" = "workspace 4";
+          "${modifier}+5" = "workspace 5";
+	  "${modifier}+6" = "workspace 6";
+	  "${modifier}+7" = "workspace 7";
+	  "${modifier}+8" = "workspace 8";
+	  "${modifier}+9" = "workspace 9";
 
-        (lib.attrsets.concatMapAttrs (key: direction: {
-            "Mod4+${key}" = "focus ${direction}";
-            "Mod4+Ctrl+${key}" = "move ${direction}";
-          }) {
-            h = "left";
-            j = "down";
-            k = "up";
-            l = "right";
-          })
+          "${modifier}+t" = "exec --no-startup-id app2unit -- ghostty";
+	  "${modifier}+e" = "exec --no-startup-id app2unit -- dolphin";
 
-        {
-          "Mod4+t" = "exec --no-startup-id app2unit -- ghostty";
-	  "Mod4+e" = "exec --no-startup-id app2unit -- dolphin";
+          "${modifier}+a" = "exec --no-startup-id noctalia-shell ipc call launcher toggle";
+	  "${modifier}+d" = "exec --no-startup-id noctalia-shell ipc call controlCenter toggle";
+	  "${modifier}+s" = "exec --no-startup-id noctalia-shell ipc call settings toggle";
+	  "${modifier}+w" = "exec --no-startup-id noctalia-shell ipc call wallpaper toggle";
+	  "${modifier}+r" = "exec --no-startup-id noctalia-shell ipc call screenRecorder toggle";
+	  "${modifier}+Shift+c" = "exec --no-startup-id noctalia-shell ipc call launcher clipboard";
+	  "${modifier}+Shift+e" = "exec --no-startup-id noctalia-shell ipc call sessionMenu toggle";
+	  "${modifier}+Shift+r" = "exec --no-startup-id systemctl --user restart noctalia-shell";
 
-          "Mod4+Super_L" = "exec --no-startup-id noctalia-shell ipc call launcher toggle";
-	  "Mod4+d" = "exec --no-startup-id noctalia-shell ipc call controlCenter toggle";
-	  "Mod4+s" = "exec --no-startup-id noctalia-shell ipc call settings toggle";
-	  "Mod4+w" = "exec --no-startup-id noctalia-shell ipc call wallpaper toggle";
-	  "Mod4+r" = "exec --no-startup-id noctalia-shell ipc call screenRecorder toggle";
-	  "Mod4+Shift+c" = "exec --no-startup-id noctalia-shell ipc call launcher clipboard";
-	  "Mod4+Shift+e" = "exec --no-startup-id noctalia-shell ipc call sessionMenu toggle";
-	  "Mod4+Shift+r" = "exec --no-startup-id systemctl --user restart noctalia-shell";
+          "${modifier}+q" = "kill";
 
-          "Mod4+q" = "kill";
+          "${modifier}+f" = "fullscreen toggle";
 
-          "Mod4+f" = "fullscreen toggle";
-
-          "Mod4+Shift+s" = "exec swaymsg reload";
-          "Mod4+p" = "exec --no-startup-id hyprshot -m region swappy";
-	  "Mod4+Shift+p" = "exec --no-startup-id hyprshot -m output";
-        }
-      ];
+          "${modifier}+Shift+s" = "exec swaymsg reload";
+          "${modifier}+p" = "exec --no-startup-id hyprshot -m region swappy";
+	  "${modifier}+Shift+p" = "exec --no-startup-id hyprshot -m output";
+        };
   };
 
 }
