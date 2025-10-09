@@ -5,7 +5,6 @@
   imports = [
     ./niri/default.nix
     ./sway/default.nix
-    inputs.dankMaterialShell.homeModules.dankMaterialShell.default
   ];
 
     home = {
@@ -38,8 +37,6 @@
       set fish_greeting # Disable greeting
   '';
   };
-
-  programs.dankMaterialShell.enable = false;
 
     home.packages = with pkgs; [ 
       linux-wallpaperengine

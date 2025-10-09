@@ -14,7 +14,7 @@
       output = {
         "DP-1" = {
 	   mode = "1920x1080@239.96Hz";
-	   adaptive_sync = "on";
+	   adaptive_sync = "off";
 	   allow_tearing = "yes";
 	   max_render_time = "off";
 	   pos = "0 0";
