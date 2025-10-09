@@ -19,6 +19,11 @@
 	  "${modifier}+8" = "workspace 8";
 	  "${modifier}+9" = "workspace 9";
 
+	  "${modifier}+l" = "exec papersway-msg focus right";
+	  "${modifier}+j" = "exec papersway-msg focus left";
+	  "${modifier}+k" = "exec focus down";
+	  "${modifier}+i" = "exec focus up"; 
+
           "${modifier}+t" = "exec --no-startup-id app2unit -- ghostty";
 	  "${modifier}+e" = "exec --no-startup-id app2unit -- dolphin";
 

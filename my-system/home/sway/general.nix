@@ -7,7 +7,6 @@
     package = pkgs.swayfx;
     systemd = {
       enable = true;
-      xdgAutostart = true;
       variables = [ "--all" ];
     };
     checkConfig = false;
@@ -53,6 +52,20 @@
       window = {
         border = 4;
 	titlebar = false;
+	commands = [
+	  {
+	    command = "border pixel 4";
+	    criteria = {
+              all = true;  
+	    };
+	  }
+	  {
+	    command = "opacity 0.93";
+	    criteria = {
+	      all = true;
+	    };
+	  }
+        ];
       };
     };
   };

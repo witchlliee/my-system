@@ -45,9 +45,12 @@
       linux-wallpaperengine
       hyprshot
       swappy
+      perl540Packages.Apppapersway
 
       cosmic-files
       cosmic-store
+
+      jq
     ];
 
     home.stateVersion = "25.05";

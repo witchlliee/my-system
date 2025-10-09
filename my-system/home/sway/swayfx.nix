@@ -5,8 +5,8 @@
   wayland.windowManager.sway.extraConfig = ''
     blur enable
     blur_passes 2
-    blur_radius 3
-    corner_radius 5
+    blur_radius 2
+    corner_radius 4
   '';
 
 }
