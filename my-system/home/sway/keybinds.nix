@@ -24,7 +24,7 @@
 	  "${modifier}+k" = "exec focus down";
 	  "${modifier}+i" = "exec focus up"; 
 
-          "${modifier}+t" = "exec --no-startup-id app2unit -- ghostty";
+          "${modifier}+t" = "exec --no-startup-id app2unit -T";
 	  "${modifier}+e" = "exec --no-startup-id app2unit -- dolphin";
 
          # "${modifier}+a" = "exec noctalia-shell ipc call launcher toggle";

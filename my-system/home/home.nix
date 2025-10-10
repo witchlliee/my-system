@@ -39,10 +39,16 @@
   };
 
     home.packages = with pkgs; [ 
+      vivaldi
+      vivaldi-ffmpeg-codecs
+
       linux-wallpaperengine
       hyprshot
       swappy
       perl540Packages.Apppapersway
+      kdePackages.karousel
+      kdePackages.wallpaper-engine-plugin
+      kde-rounded-corners
 
       cosmic-files
       cosmic-store

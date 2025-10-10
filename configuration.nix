@@ -74,15 +74,23 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = false;
 
-  services.greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --remember --time --cmd niri-session";
-          user = "greeter";
-        };
-      };
-  };
+ # services.greetd = {
+ #     enable = true;
+ #     settings = {
+ #       default_session = {
+ #         command = "${pkgs.tuigreet}/bin/tuigreet --remember --time --cmd niri-session";
+ #         user = "greeter";
+ #       };
+ #    };
+ # };
+
+ services.displayManager.sddm = {
+   enable = true;
+   wayland = {
+     enable = true;
+     compositor = "kwin";
+   };
+ };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -206,15 +214,35 @@
 
   programs = {
     niri = {
-      enable = true;
+      enable = false;
       package = pkgs.niri-unstable;
     };
   };
 
-  programs.sway = {
-    enable = true;
-    package = pkgs.swayfx;
-    wrapperFeatures.gtk = true;
+ # programs.sway = {
+ #   enable = true;
+ #   package = pkgs.swayfx;
+ #   wrapperFeatures.gtk = true;
+ # };
+
+  services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    discover
+    konsole
+    xwaylandvideobridge
+  ];
+
+ # xdg.terminal-exec.enable = true;
+
+  programs.uwsm = {
+    enable = false;
+    waylandCompositors = {
+      sway = {
+        prettyName = "Sway";
+        comment = "Sway compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/sway";
+      };
+    };
   };
 
   security = {
@@ -226,30 +254,20 @@
   xdg = {
     portal = {
       enable = true;
-      config = {
-        common.default = [ "gtk" ];
-        niri = {
-          default = ["gnome" "gtk"];
- 	   "org.freedesktop.impl.portal.Access" = ["gtk"];
-           "org.freedesktop.impl.portal.Notification" = ["gtk"];
-           "org.freedesktop.impl.portal.FileChooser" = ["gtk"]; 
- 	   "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
-       };
-      };
+      xdgOpenUsePortal = true;
       extraPortals = [
-       pkgs.xdg-desktop-portal-gnome
-       pkgs.xdg-desktop-portal-gtk
+       pkgs.kdePackages.xdg-desktop-portal-kde
       ];
     };
   };
 
-  services.noctalia-shell.enable = true;
+ # services.noctalia-shell.enable = true;
 
   stylix = {
     enable = true;
     # image = ./wallpapers/wallhaven-qr2zj5_3840x2160.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/synth-midnight-dark.yaml";
-    polarity = "dark";
+    base16Scheme = lib.mkForce "${pkgs.base16-schemes}/share/themes/synth-midnight-dark.yaml";
+    polarity = lib.mkForce "dark";
     cursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
@@ -261,9 +279,6 @@
 
   programs.fish.enable = true;  
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -273,6 +288,7 @@
     SDL_VIDEODRIVER = "wayland,x11,windows";
     GDK_BACKEND = "wayland";
     PROTON_USE_WAYLAND = "1";
+
   };
 
   # List packages installed in system profile. To search, run:
@@ -287,17 +303,15 @@
     cliphist
     matugen
     cava
-    xwayland-satellite-unstable
-    gnome-secrets
-    kdePackages.dolphin
+   # xwayland-satellite-unstable
     discord
     ghostty
-    brave
     spotify
     mpvpaper
 
     inputs.quickshell.packages.${system}.default
-   # inputs.noctalia.packages.${system}.default
+    inputs.noctalia.packages.${system}.default
+    inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     
     btop
 
@@ -305,11 +319,9 @@
     wget
     arch-install-scripts
     fastfetch
-    kdePackages.ark
     unrar
     app2unit
     cachix
-    kdePackages.kservice
     compsize
     cmake
     ninja
