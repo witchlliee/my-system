@@ -27,7 +27,7 @@
           "${modifier}+t" = "exec --no-startup-id app2unit -- ghostty";
 	  "${modifier}+e" = "exec --no-startup-id app2unit -- dolphin";
 
-          "${modifier}+a" = "exec --no-startup-id noctalia-shell ipc call launcher toggle";
+         # "${modifier}+a" = "exec noctalia-shell ipc call launcher toggle";
 	  "${modifier}+d" = "exec --no-startup-id noctalia-shell ipc call controlCenter toggle";
 	  "${modifier}+s" = "exec --no-startup-id noctalia-shell ipc call settings toggle";
 	  "${modifier}+w" = "exec --no-startup-id noctalia-shell ipc call wallpaper toggle";
